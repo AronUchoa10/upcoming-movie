@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Upcoming Movie</string>
+    <string name="new_app_name">Teste</string>
+
+    <string name="dlg_positive_ok">OK</string>
+
+    <string name="error">Error</string>
+    <string name="message_error">An error has occured, please try again!</string>
+
+    <string name="name">"Name: "</string>
+    <string name="genre">"Genre: "</string>
+    <string name="release_date">"Release Date: "</string>
+    <string name="unspecified_genre">Unspecified</string>
+
+    <string name="no_image_movie">No image</string>
+
+    <string name="overview">Overview:</string>
+
+    <string name="searchView">Search</string>
+
+    <string name="search_movies">Search movies</string>
+
+    <string name="attention">Attention</string>
+    <string name="empty_text">Type something to search</string>
+</resources>
