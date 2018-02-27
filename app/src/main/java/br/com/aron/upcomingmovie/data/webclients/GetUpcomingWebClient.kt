@@ -18,7 +18,7 @@ import br.com.aron.upcomingmovie.R
 class GetUpcomingWebClient {
 
     fun getUpcoming(context: Context, apiKey: String, language: String, page: Int, region: String,
-                    callbackResponse: GetUpcomingResponse<List<MovieModel>>) {
+                    callbackResponse: GetUpcomingResponse<MutableList<MovieModel>>) {
 
         val call = RetrofitClientTMDB().getUpcomingService().getUpcoming(apiKey, language, page, region)
         call.enqueue(object: Callback<UpcomingMovie> {

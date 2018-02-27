@@ -27,7 +27,6 @@ class MovieDetailActivity : AppCompatActivity() {
         toolbar.setOnClickListener {
             finish()
         }
-//        toolbar.navigationIcon!!.setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
 
         movieID = intent.getIntExtra(Constants.movieIDIntent, -1)
         if (movieID != -1){

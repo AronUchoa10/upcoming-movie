@@ -5,10 +5,8 @@ import android.util.Log
 import br.com.aron.upcomingmovie.R
 import br.com.aron.upcomingmovie.data.RetrofitClientTMDB
 import br.com.aron.upcomingmovie.data.callbacks.GetGenreListResponse
-import br.com.aron.upcomingmovie.data.callbacks.GetUpcomingResponse
 import br.com.aron.upcomingmovie.model.Genre
 import br.com.aron.upcomingmovie.model.GenreList
-import br.com.aron.upcomingmovie.model.MovieModel
 import br.com.aron.upcomingmovie.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +18,7 @@ import retrofit2.Response
 class GetGenreListWebClient {
 
     fun getGenreList(context: Context, apiKey: String, language: String,
-                     callbackResponse: GetGenreListResponse<List<Genre>>) {
+                     callbackResponse: GetGenreListResponse<MutableList<Genre>>) {
 
         val call = RetrofitClientTMDB().getGenreListService().getGenreList(apiKey, language)
         call.enqueue(object: Callback<GenreList> {
@@ -32,7 +30,7 @@ class GetGenreListWebClient {
 
                     val genreList: GenreList = it!!
                     val results = genreList.genres
-                    callbackResponse.success(results!!)
+                    callbackResponse.success((results as MutableList<Genre>?)!!)
                 }
             }
 

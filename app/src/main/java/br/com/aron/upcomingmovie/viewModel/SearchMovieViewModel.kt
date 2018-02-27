@@ -2,28 +2,43 @@ package br.com.aron.upcomingmovie.viewModel
 
 import android.content.Context
 import br.com.aron.upcomingmovie.data.callbacks.GetGenreListResponse
+import br.com.aron.upcomingmovie.data.callbacks.SearchMovieResponse
 import br.com.aron.upcomingmovie.data.webclients.GetGenreListWebClient
+import br.com.aron.upcomingmovie.data.webclients.SearchMovieWebClient
 import br.com.aron.upcomingmovie.model.Genre
+import br.com.aron.upcomingmovie.model.MovieModel
 import br.com.aron.upcomingmovie.utils.Constants
 
 /**
  * Created by Aron on 27/02/2018.
  */
-abstract class SearchMovieViewModel {
+class SearchMovieViewModel {
 
-//    private val genreList: MutableList<Genre>? = mutableListOf()
-//
-//    // GetGenreList
-//    fun requestGenreList(context: Context): MutableList<Genre>? {
-//
-//        GetGenreListWebClient().getGenreList(context, Constants.apiKey, Constants.language,
-//                object : GetGenreListResponse<List<Genre>> {
-//                    override fun success(response: List<Genre>) {
-//                        for (item in response) {
-//                            this@SearchMovieViewModel.genreList!!.add(item)
-//                        }
-//                    }
-//                })
-//        return genreList
-//    }
+    // GetGenreList
+    fun requestGenreList(context: Context, mServiceListener: SearchMovieViewModelListener)  {
+
+        GetGenreListWebClient().getGenreList(context, Constants.apiKey, Constants.language,
+                object : GetGenreListResponse<MutableList<Genre>> {
+                    override fun success(response: MutableList<Genre>) {
+                        mServiceListener.returnGenreListListener(response)
+                    }
+                })
+    }
+
+    // SearchMovie
+    fun requestSearchMovie(context: Context, query: String, mServiceListener: SearchMovieViewModelListener){
+
+        SearchMovieWebClient().searchMovie(context, Constants.apiKey, Constants.language, query,
+                object: SearchMovieResponse<MutableList<MovieModel>> {
+                    override fun success(response: MutableList<MovieModel>) {
+                        mServiceListener.returnMovieListListener(response)
+                    }
+                })
+    }
+
+    interface SearchMovieViewModelListener {
+
+        fun returnMovieListListener(returnList: MutableList<MovieModel>)
+        fun returnGenreListListener(returnList: MutableList<Genre>)
+    }
 }

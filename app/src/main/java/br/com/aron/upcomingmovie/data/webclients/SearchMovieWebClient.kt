@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import br.com.aron.upcomingmovie.R
 import br.com.aron.upcomingmovie.data.RetrofitClientTMDB
-import br.com.aron.upcomingmovie.data.callbacks.GetUpcomingResponse
 import br.com.aron.upcomingmovie.data.callbacks.SearchMovieResponse
 import br.com.aron.upcomingmovie.model.MovieModel
 import br.com.aron.upcomingmovie.model.UpcomingMovie
@@ -19,7 +18,7 @@ import retrofit2.Response
 class SearchMovieWebClient {
 
     fun searchMovie(context: Context, apiKey: String, language: String, query: String,
-                    callbackResponse: SearchMovieResponse<List<MovieModel>>){
+                    callbackResponse: SearchMovieResponse<MutableList<MovieModel>>){
 
         val call = RetrofitClientTMDB().searchMovieService().searchMovie(apiKey, language, query)
         call.enqueue(object: Callback<UpcomingMovie> {
