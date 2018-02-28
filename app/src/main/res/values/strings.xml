@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Upcoming Movie</string>
+    <string name="app_name">Upcoming Movies</string>
     <string name="new_app_name">Teste</string>
 
     <string name="dlg_positive_ok">OK</string>
