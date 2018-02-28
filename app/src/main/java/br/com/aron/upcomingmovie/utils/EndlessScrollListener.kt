@@ -32,8 +32,7 @@ abstract class EndlessScrollListener : AbsListView.OnScrollListener {
 
 
     override fun onScroll(view: AbsListView, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
-        // If the total item count is zero and the previous isn't, assume the
-        // list is invalidated and should be reset back to initial state
+
         if (totalItemCount < previousTotalItemCount) {
             this.currentPage = this.startingPageIndex
             this.previousTotalItemCount = totalItemCount
@@ -41,28 +40,21 @@ abstract class EndlessScrollListener : AbsListView.OnScrollListener {
                 this.loading = true
             }
         }
-        // If it's still loading, we check to see if the dataset count has
-        // changed, if so we conclude it has finished loading and update the current page
-        // number and total item count.
+
         if (loading && totalItemCount > previousTotalItemCount) {
             loading = false
             previousTotalItemCount = totalItemCount
             currentPage++
         }
 
-        // If it isn't currently loading, we check to see if we have breached
-        // the visibleThreshold and need to reload more data.
-        // If we do need to reload some more data, we execute onLoadMore to fetch the data.
         if (!loading && firstVisibleItem + visibleItemCount + visibleThreshold >= totalItemCount) {
             loading = onLoadMore(currentPage + 1, totalItemCount)
         }
     }
 
-    // Defines the process for actually loading more data based on page
-    // Returns true if more data is being loaded; returns false if there is no more data to load.
     abstract fun onLoadMore(page: Int, totalItemsCount: Int): Boolean
 
     override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {
-        // Don't take any action on changed
+
     }
 }

@@ -51,6 +51,8 @@ class SearchMovieActivity : AppCompatActivity(), View.OnClickListener, SearchMov
             when(v.id) {
                 R.id.act_search_btnSearch -> {
 
+                    label_no_movie_found.visibility = View.GONE
+
                     if (searchView.text.toString() == ""){
 
                         Utils().showDialogWithoutCancel(this,this.getString(R.string.attention),
@@ -74,6 +76,12 @@ class SearchMovieActivity : AppCompatActivity(), View.OnClickListener, SearchMov
     }
 
     override fun returnMovieListListener(returnList: MutableList<MovieModel>) {
+
+        if (returnList.count() == 0){
+            label_no_movie_found.visibility = View.VISIBLE
+        }else {
+            label_no_movie_found.visibility = View.GONE
+        }
 
         mAdapter = SearchMovieAdapter(this, returnList, genreList!!)
         (searchMovieListView as ListView).adapter = mAdapter

@@ -43,6 +43,9 @@ class MovieActivity : AppCompatActivity(), MovieViewModel.MovieViewModelListener
         })
 
         movieViewModel.requestGenreList(this,this)
+
+        adapter = MovieAdapter(this, movieList, genreList!!)
+        (movieListView as ListView).adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -73,8 +76,6 @@ class MovieActivity : AppCompatActivity(), MovieViewModel.MovieViewModelListener
         for (item in returnList) {
             movieList.add(item)
         }
-        adapter = MovieAdapter(this, movieList, genreList!!)
-        (movieListView as ListView).adapter = adapter
         adapter?.notifyDataSetChanged()
 
     }

@@ -92,7 +92,6 @@ open class MovieAdapter(private val activity: Activity, movieList: List<MovieMod
             intent.putExtra(Constants.movieIDIntent, movieList[i].id)
             activity.startActivity(intent)
         }
-
         return view
     }
 }

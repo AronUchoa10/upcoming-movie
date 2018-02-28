@@ -24,6 +24,4 @@ class RetrofitClientTMDB {
     fun getDetailService() = retrofit.create(GetDetailService::class.java)
 
     fun searchMovieService() = retrofit.create(SearchMovieService::class.java)
-
-
 }

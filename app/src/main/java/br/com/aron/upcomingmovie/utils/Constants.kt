@@ -10,5 +10,4 @@ object Constants {
     val language = "en-US"
 
     val movieIDIntent = "movie_id_intent"
-    val arrayGenreIntent = "array_genre_intent"
 }

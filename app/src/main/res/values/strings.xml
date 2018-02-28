@@ -22,4 +22,6 @@
 
     <string name="attention">Attention</string>
     <string name="empty_text">Type something to search</string>
+
+    <string name="no_movie_found">No movie found</string>
 </resources>

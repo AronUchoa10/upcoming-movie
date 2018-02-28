@@ -1,6 +1,7 @@
 package br.com.aron.upcomingmovie.data.webclients
 
 import android.content.Context
+import android.content.DialogInterface
 import android.util.Log
 import br.com.aron.upcomingmovie.data.RetrofitClientTMDB
 import br.com.aron.upcomingmovie.data.callbacks.GetUpcomingResponse
@@ -39,7 +40,7 @@ class GetUpcomingWebClient {
 
                 Log.e("onFailure error", t?.message)
                 Utils().showDialogWithoutCancel(context,context.getString(R.string.error),
-                        context.getString(R.string.message_error),null)
+                        context.getString(R.string.message_error),DialogInterface.OnClickListener { dialog, i -> dialog.dismiss() })
             }
         })
     }
